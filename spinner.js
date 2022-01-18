@@ -1,26 +1,14 @@
-const spinning = (function(i) {
-  setTimeout(() => {
-  process.stdout.write('\r|   ');
-}, 100+i);
+const spinning = function() {
 
-setTimeout(() => {
-  process.stdout.write('\r/   ');
-}, 300+i);
+  const spinningArray = [ '|', '/', '-', '\\' ];
 
-setTimeout(() => {
-  process.stdout.write('\r-   ');
-}, 500+i);
+  for (let element in spinningArray) {
+    setTimeout(() => {
+      process.stdout.write(`\r${spinningArray[element]}  `);
+    }, element * 100);
+  }
+};
 
-setTimeout(() => {
-  // Need to escape the backslash since it's a special character.
-  process.stdout.write('\r\\   ');
-}, 700+i);
-  if (i > 10000) {
-    return;
-  } else {
-    spinning(i+800);
-  };
-  console.log("\n");
-});
 
-spinning(1);
+
+spinning();
